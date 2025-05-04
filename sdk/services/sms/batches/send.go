@@ -1,7 +1,7 @@
 package batches
 
 import (
-	batchesModel "sinch/sdk/model/sms/batches"
+	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
 )
 
 type BatchesInterface interface {

@@ -1,7 +1,7 @@
 package batches
 
 import (
-	"sinch/sdk/model"
+	"github.com/stnc/sinch-sdk-go/sdk/model"
 )
 
 func BatchesRepositoryInit(c *model.Client) *BranchRepo {

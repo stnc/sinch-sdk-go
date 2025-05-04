@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	// model "sinch/sdk/model"
-	// batchesModel "sinch/sdk/model/sms/batches"
-	sdk "sinch/sdk/sms"
+	model "github.com/stnc/sinch-sdk-go/sdk/model"
+	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
+	sdk "github.com/stnc/sinch-sdk-go/sdk/sms"
 
 	"github.com/joho/godotenv"
 )
@@ -18,23 +18,14 @@ func init() {
 	}
 }
 
-type User struct {
-	Name        string
-	Age         int
-	Active      bool
-	lastLoginAt string
-}
 
 func main() {
 
-
-
-
-	// data := &batchesModel.SendBatchRequest{
-	// 	Body:    "Hello from Sinch! via golang sdk ",
-	// 	From:    os.Getenv("FROM"),
-	// 	SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
-	// 	To:      []string{os.Getenv("TO")}}
+	data := &batchesModel.SendBatchRequest{
+		Body:    "Hello from Sinch! via golang sdk ",
+		From:    os.Getenv("FROM"),
+		SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
+		To:      []string{os.Getenv("TO")}}
 
 	client := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
 	sms, err := sdk.Init(client)
@@ -42,15 +33,7 @@ func main() {
 		panic(err)
 	}
 
-	// response, err_send := sms.Batches.Send(data)
-
-	// if err_send != nil {
-	// 	fmt.Println(err_send)
-	// } else {
-	// 	fmt.Println(response)
-	// }
-
-	response, err_send := sms.Batches.List()
+	response, err_send := sms.Batches.Send(data)
 
 	if err_send != nil {
 		fmt.Println(err_send)
@@ -58,12 +41,20 @@ func main() {
 		fmt.Println(response)
 	}
 
+	// response, err_send := sms.Batches.List()
 
-	a := sms.Batches.DryRun()
+	// if err_send != nil {
+	// 	fmt.Println(err_send)
+	// } else {
+	// 	fmt.Println(response)
+	// }
 
-	fmt.Println(a)
 
-	b := sms.Groups.Create()
-	fmt.Println(b)
+	// a := sms.Batches.DryRun()
+
+	// fmt.Println(a)
+
+	// b := sms.Groups.Create()
+	// fmt.Println(b)
 
 }

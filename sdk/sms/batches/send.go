@@ -7,9 +7,9 @@ import (
 	"io"
 	"net/http"
 
-	"sinch/sdk/core"
-	batchesModel "sinch/sdk/model/sms/batches"
-	 "sinch/sdk/model"
+	"github.com/stnc/sinch-sdk-go/sdk/core"
+	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
+	 "github.com/stnc/sinch-sdk-go/sdk/model"
 )
 
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"sinch/sdk/model"
+	"github.com/stnc/sinch-sdk-go/sdk/model"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"

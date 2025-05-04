@@ -1,4 +1,4 @@
-module sinch
+module github.com/stnc/sinch-sdk-go
 
 go 1.23.8
 

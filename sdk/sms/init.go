@@ -1,10 +1,10 @@
 package sdk
 
 import (
-	"sinch/sdk/model"
-	svc "sinch/sdk/services/sms/batches"
-	"sinch/sdk/sms/batches"
-	group "sinch/sdk/sms/groups"
+	"github.com/stnc/sinch-sdk-go/sdk/model"
+	svc "github.com/stnc/sinch-sdk-go/sdk/services/sms/batches"
+	"github.com/stnc/sinch-sdk-go/sdk/sms/batches"
+	group "github.com/stnc/sinch-sdk-go/sdk/sms/groups"
 )
 
 func Clients(projectId string, clientId string, clientSecret string, region string) (client *model.Client) {

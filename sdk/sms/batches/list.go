@@ -6,10 +6,10 @@ import (
 	"io"
 	"net/http"
 
-	"sinch/sdk/core"
+	"github.com/stnc/sinch-sdk-go/sdk/core"
 
-	batchesModel "sinch/sdk/model/sms/batches"
-	 "sinch/sdk/model"
+	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
+	 "github.com/stnc/sinch-sdk-go/sdk/model"
 )
 
 // List Batches  : With the list operation you can list batch messages created in the last 14 days that you have created. This operation supports pagination
