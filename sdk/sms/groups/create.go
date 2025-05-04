@@ -12,7 +12,6 @@ func (s *GroupsRepo) Create() string {
 	return " Create data " + s.C.ClientId
 }
 
-// BranchRepo struct
 type GroupsRepo struct {
 	C *model.Client
 }
