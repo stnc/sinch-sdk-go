@@ -70,7 +70,7 @@ func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.Send
 	token := core.GetToken(s.C)
 
 	url := core.ReplaceUrl(model.APIUrl + "/batches", s.C.ProjectId, s.C.Region)
-
+	
 	response1, err := core.NewRequest( http.MethodPost, url, token.AccessToken, req)
 
 	if err != nil {

@@ -36,13 +36,11 @@ func GetToken(s *model.Client) *oauth2.Token {
 // If specified, the value pointed to by body is JSON encoded and included
 // as the request body.
 func NewRequest(method, path string, token string, opt any) (result []byte, err error) {
-	// var result []byte
 
 	reqHeaders := make(http.Header)
 	reqHeaders.Set("Accept", "application/json")
 
 	var body []byte
-	// var err error
 	var postBodyJsonBuffer *bytes.Buffer
 	switch {
 	case method == http.MethodPatch || method == http.MethodPost || method == http.MethodPut:
