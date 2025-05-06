@@ -1,7 +1,7 @@
 package groups
 
 import (
-	"sinch/sdk/model"
+	"github.com/stnc/sinch-sdk-go/sdk/model"
 )
 
 func GroupsRepositoryInit(c *model.Client) *GroupsRepo {

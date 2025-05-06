@@ -15,6 +15,9 @@ type Repositories struct {
 }
 
 func Clients(projectId string, clientId string, clientSecret string, region string) (client *model.Client) {
+
+
+
 	return &model.Client{
 		ClientId:     clientId,
 		ProjectId:    projectId,
@@ -22,6 +25,13 @@ func Clients(projectId string, clientId string, clientSecret string, region stri
 		Region:       region,
 		
 	}
+
+	// var client *model.Client
+	// client.ClientId = clientId
+	// client.ProjectId = projectId
+	// client.ClientSecret = clientSecret
+	// client.Region = region
+	// return client
 }
 
 
