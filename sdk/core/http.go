@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/stnc/sinch-sdk-go/sdk/model"
+	"github.com/stnc/sinch-sdk-go/sdk/core"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
@@ -68,4 +69,28 @@ func NewRequest(method, path string, token string, opt any) (*http.Request, erro
 	maps.Copy(req.Header, reqHeaders)
 
 	return req, nil
+}
+
+
+
+func  Do(req *http.Request, v any) (  any, error) {
+response, err_do := http.DefaultClient.Do(req)
+
+defer response.Body.Close()
+
+err_do = core.CheckResponse(response)
+
+//Handle Error
+// TODO:  is it path right ?
+if err_do != nil {
+	return result, err_do
+}
+
+body2, _ := io.ReadAll(response.Body)
+
+if err := json.Unmarshal(body2, &result); err != nil { // Parse []byte to go struct pointer
+	return result, err
+}
+
+return result, err
 }
