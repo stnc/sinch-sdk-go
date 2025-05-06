@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	model "github.com/stnc/sinch-sdk-go/sdk/model"
 	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
 	sdk "github.com/stnc/sinch-sdk-go/sdk/sms"
 
@@ -18,17 +17,18 @@ func init() {
 	}
 }
 
-
 func main() {
 
 	data := &batchesModel.SendBatchRequest{
-		Body:    "Hello from Sinch! via golang sdk ",
-		From:    os.Getenv("FROM"),
-		SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
-		To:      []string{os.Getenv("TO")}}
+		Body: "Hello from Sinch! via golang sdk ",
+		From: os.Getenv("FROM"),
+		// SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
+		SmsType: "mt_eetext",
+		To:      []string{os.Getenv("TO")},
+	}
 
-	client := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
-	sms, err := sdk.Init(client)
+	sms, err := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
+
 	if err != nil {
 		panic(err)
 	}
@@ -36,8 +36,10 @@ func main() {
 	response, err_send := sms.Batches.Send(data)
 
 	if err_send != nil {
+		fmt.Println("err_send")
 		fmt.Println(err_send)
 	} else {
+		fmt.Println("response main")
 		fmt.Println(response)
 	}
 
@@ -48,7 +50,6 @@ func main() {
 	// } else {
 	// 	fmt.Println(response)
 	// }
-
 
 	// a := sms.Batches.DryRun()
 
