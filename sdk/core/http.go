@@ -63,15 +63,13 @@ func NewRequest(method, path string, token string, opt any) (result []byte, err 
 
 	resp, err := http.NewRequest(method, path, postBodyJsonBuffer)
 	if err != nil {
-		fmt.Println("NewRequest res", resp)
 		return result, err
 	}
-	fmt.Println("req", resp)
+
 	// Set the request specific headers.
 	maps.Copy(resp.Header, reqHeaders)
 
 	response, err_do := http.DefaultClient.Do(resp)
-	fmt.Println("response", response)
 
 	defer response.Body.Close()
 
