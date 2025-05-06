@@ -5,7 +5,7 @@ import (
 	"os"
 
 	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
-	sdk "github.com/stnc/sinch-sdk-go/sdk/sms"
+	"github.com/stnc/sinch-sdk-go/sdk"
 
 	"github.com/joho/godotenv"
 )
