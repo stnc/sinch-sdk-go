@@ -18,17 +18,17 @@ func init() {
 	}
 }
 
-
 func main() {
 
 	data := &batchesModel.SendBatchRequest{
 		Body:    "Hello from Sinch! via golang sdk ",
 		From:    os.Getenv("FROM"),
 		SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
-		To:      []string{os.Getenv("TO")}}
+		To:      []string{os.Getenv("TO")},
+	}
 
-	client := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
-	sms, err := sdk.Init(client)
+	sms, err := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
+
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +48,6 @@ func main() {
 	// } else {
 	// 	fmt.Println(response)
 	// }
-
 
 	// a := sms.Batches.DryRun()
 

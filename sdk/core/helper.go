@@ -15,8 +15,8 @@ func ReplaceUrl(url string, projectId string, region string) string {
 	//	u := fmt.Sprintf("users/%s/projects", projectId) fmt.println(u)
 }
 
-// PathUnescape is identical to [QueryUnescape] except that it does not
-// unescape '+' to ' ' (space).
-func PathUnescape(s string) (string, error) {
-	return unescape(s, encodePathSegment)
-}
+// // PathUnescape is identical to [QueryUnescape] except that it does not
+// // unescape '+' to ' ' (space).
+// func PathUnescape(s string) (string, error) {
+// 	return unescape(s, encodePathSegment)
+// }
