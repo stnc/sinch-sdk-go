@@ -58,4 +58,38 @@ func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.Send
 	}
 
 	return result, err
+
+
+
+
+
+
+	req, err := s.client.NewRequest(http.MethodGet, u, opt, options)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var p []*Project
+	resp, err := s.client.Do(req, &p)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return p, resp, nil
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
