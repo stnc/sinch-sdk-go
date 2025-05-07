@@ -13,7 +13,7 @@ import (
 )
 
 // List Batches  : With the list operation you can list batch messages created in the last 14 days that you have created. This operation supports pagination
-func (s *BranchRepo) List() (batchesModel.ListBatchResponse, error) {
+func (s *Batches) List() (batchesModel.ListBatchResponse, error) {
 
 	var result batchesModel.ListBatchResponse
 

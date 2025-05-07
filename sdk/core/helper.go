@@ -1,6 +1,7 @@
 package core
 
 import (
+	"encoding/json"
 	"strings"
 )
 
@@ -13,4 +14,15 @@ func ReplaceUrl(url string, projectId string, region string) string {
 	temp := strings.Replace(url, "{Region}", region, 1)
 	return strings.Replace(temp, "{ProjectId}", projectId, 1)
 	//	u := fmt.Sprintf("test/%s/batches", projectId) fmt.println(u)
+}
+
+// if err := core.Byte2Json(response1, &result); err != nil {
+// 	return result, err
+// }
+
+func Byte2Json(response []byte, data *any) error {
+	if err := json.Unmarshal(response, &data); err != nil { // Parse []byte to go struct pointer
+		return err
+	}
+	return nil
 }

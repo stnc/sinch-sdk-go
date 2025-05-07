@@ -1,6 +1,6 @@
 package batches
 
-func (s *BranchRepo) DryRun() string {
+func (s *Batches) DryRun() string {
 	return " DryRun SMS " + s.C.ClientId
 }
 

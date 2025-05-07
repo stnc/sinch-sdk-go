@@ -15,7 +15,7 @@ import (
 // Send  : Depending on the length of the body, one message might be split into multiple parts and charged accordingly.
 // Any groups targeted in a scheduled batch will be evaluated at the time of sending.
 // If a group is deleted between batch creation and scheduled date, it will be considered empty.
-func (s *BranchRepo) SendOLD(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
+func (s *Batches) SendOLD(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
 	var result batchesModel.SendBatchResponse
 
 	token := core.GetToken(s.C)
@@ -65,13 +65,13 @@ func (s *BranchRepo) SendOLD(req *batchesModel.SendBatchRequest) (batchesModel.S
 // Send  : Depending on the length of the body, one message might be split into multiple parts and charged accordingly.
 // Any groups targeted in a scheduled batch will be evaluated at the time of sending.
 // If a group is deleted between batch creation and scheduled date, it will be considered empty.
-func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
+func (s *Batches) Send(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
 	var result batchesModel.SendBatchResponse
 	token := core.GetToken(s.C)
 
-	url := core.ReplaceUrl(model.APIUrl + "/batches", s.C.ProjectId, s.C.Region)
-	
-	response1, err := core.NewRequest( http.MethodPost, url, token.AccessToken, req)
+	url := core.ReplaceUrl(model.APIUrl+"/batches", s.C.ProjectId, s.C.Region)
+
+	response1, err := core.NewRequest(http.MethodPost, url, token.AccessToken, req)
 
 	if err != nil {
 		return result, err
@@ -80,6 +80,9 @@ func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.Send
 	if err := json.Unmarshal(response1, &result); err != nil { // Parse []byte to go struct pointer
 		return result, err
 	}
+
+
+
 	return result, err
 
 }
