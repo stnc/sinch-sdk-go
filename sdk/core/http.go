@@ -70,10 +70,10 @@ func NewRequest(method, path string, token string, opt any) (result []byte, err 
 
 		}
 	default:
-		fmt.Println("get ile gelsin top", resp)
+		fmt.Println("fetch with get mothod ", resp)
 		resp, err1 = http.NewRequest(method, path, nil)
 		if err1 != nil {
-			fmt.Println("get ile gelsin err block ", resp)
+			fmt.Println("get err block  ", resp)
 			return result, err1
 		}
 	}
