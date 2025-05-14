@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-
+	"github.com/stnc/sinch-sdk-go/sdk/model"
 	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
 	"github.com/stnc/sinch-sdk-go/sdk"
 
@@ -22,8 +22,7 @@ func main() {
 	data := &batchesModel.SendBatchRequest{
 		Body: "Hello from Sinch! via golang sdk ",
 		From: os.Getenv("FROM"),
-		// SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
-		SmsType: "mt_eetext",
+		 SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
 		To:      []string{os.Getenv("TO")},
 	}
 
