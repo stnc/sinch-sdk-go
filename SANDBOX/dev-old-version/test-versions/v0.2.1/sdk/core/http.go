@@ -1,10 +1,6 @@
 package core
 
 import (
-<<<<<<< HEAD
-	"context"
-	"log"
-=======
 	"bytes"
 	"context"
 	"encoding/json"
@@ -13,7 +9,6 @@ import (
 	"log"
 	"maps"
 	"net/http"
->>>>>>> dev
 
 	"github.com/stnc/sinch-sdk-go/sdk/model"
 
@@ -33,9 +28,6 @@ func GetToken(s *model.Client) *oauth2.Token {
 		log.Fatal(err.Error())
 	}
 	return token
-<<<<<<< HEAD
-}
-=======
 }
 
 // NewRequest creates a new API request. The method expects a relative URL
@@ -93,4 +85,3 @@ func NewRequest(method, path string, token string, opt any) (result []byte, err 
 
 	return result, nil
 }
->>>>>>> dev

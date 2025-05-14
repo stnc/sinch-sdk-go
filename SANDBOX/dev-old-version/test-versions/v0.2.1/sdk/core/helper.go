@@ -1,14 +1,6 @@
 package core
 
 import (
-<<<<<<< HEAD
-	"strings"
-)
-
-func ReplaceUrl(url string, projectId string, region string) string {
-	urltemp := strings.Replace(url, "{Region}", region, 1)
-	return strings.Replace(urltemp, "{ProjectId}", projectId, 1)
-=======
 	"encoding/json"
 	"strings"
 )
@@ -33,5 +25,4 @@ func Byte2Json(response []byte, data *any) error {
 		return err
 	}
 	return nil
->>>>>>> dev
 }

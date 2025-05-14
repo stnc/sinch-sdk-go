@@ -8,17 +8,6 @@ import (
 	"net/http"
 
 	"github.com/stnc/sinch-sdk-go/sdk/core"
-<<<<<<< HEAD
-	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
-	 "github.com/stnc/sinch-sdk-go/sdk/model"
-)
-
-
-// Send  : Depending on the length of the body, one message might be split into multiple parts and charged accordingly.
-// Any groups targeted in a scheduled batch will be evaluated at the time of sending.
-// If a group is deleted between batch creation and scheduled date, it will be considered empty.
-func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
-=======
 	"github.com/stnc/sinch-sdk-go/sdk/model"
 	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
 )
@@ -27,16 +16,11 @@ func (s *BranchRepo) Send(req *batchesModel.SendBatchRequest) (batchesModel.Send
 // Any groups targeted in a scheduled batch will be evaluated at the time of sending.
 // If a group is deleted between batch creation and scheduled date, it will be considered empty.
 func (s *Batches) SendOLD(req *batchesModel.SendBatchRequest) (batchesModel.SendBatchResponse, error) {
->>>>>>> dev
 	var result batchesModel.SendBatchResponse
 
 	token := core.GetToken(s.C)
 
-<<<<<<< HEAD
-	var url string = model.APIUrl + "/batches" 
-=======
 	var url string = model.APIUrl + "/batches"
->>>>>>> dev
 
 	url = core.ReplaceUrl(url, s.C.ProjectId, s.C.Region)
 
@@ -59,30 +43,17 @@ func (s *Batches) SendOLD(req *batchesModel.SendBatchRequest) (batchesModel.Send
 	defer response.Body.Close()
 
 	err_do = core.CheckResponse(response)
-<<<<<<< HEAD
-
-	//Handle Error
-	// TODO:  is it path right ?
-	if err_do != nil {
-=======
 	fmt.Println("err_do", err_do)
 	//Handle Error
 	// TODO:  is it path right ?
 	if err_do != nil {
 		fmt.Println("result", result)
->>>>>>> dev
 		return result, err_do
 	}
 
 	body2, _ := io.ReadAll(response.Body)
 
 	if err := json.Unmarshal(body2, &result); err != nil { // Parse []byte to go struct pointer
-<<<<<<< HEAD
-		return result, err
-	}
-
-	return result, err
-=======
 		fmt.Println("result2", result)
 		return result, err
 	}
@@ -114,5 +85,4 @@ func (s *Batches) Send(req *batchesModel.SendBatchRequest) (batchesModel.SendBat
 
 	return result, err
 
->>>>>>> dev
 }
