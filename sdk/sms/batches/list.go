@@ -3,7 +3,7 @@ package batches
 import (
 	"encoding/json"
 
-	"io"
+
 	"net/http"
 
 	"github.com/stnc/sinch-sdk-go/sdk/core"
@@ -13,8 +13,8 @@ import (
 )
 
 // List Batches  : With the list operation you can list batch messages created in the last 14 days that you have created. This operation supports pagination
-func (s *BranchRepo) List() (batchesModel.ListBatchResponse, error) {
-
+func (s *Batches) List() (batchesModel.ListBatchResponse, error) {
+/*
 	var result batchesModel.ListBatchResponse
 
 	token := core.GetToken(s.C)
@@ -48,4 +48,24 @@ func (s *BranchRepo) List() (batchesModel.ListBatchResponse, error) {
 	}
 
 	return result, err
+
+*/
+
+	var result1 batchesModel.ListBatchResponse
+
+	token1 := core.GetToken(s.C)
+
+	url1 := core.ReplaceUrl(model.APIUrl+"/batches", s.C.ProjectId, s.C.Region)
+
+	response1, err1 := core.NewRequest(http.MethodGet, url1, token1.AccessToken, nil)
+
+	if err1 != nil {
+		return result1, err1
+	}
+
+	if err1 := json.Unmarshal(response1, &result1); err1 != nil { // Parse []byte to go struct pointer
+		return result1, err1
+	}
+
+	return result1, err1
 }

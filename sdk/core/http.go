@@ -36,31 +36,49 @@ func GetToken(s *model.Client) *oauth2.Token {
 // If specified, the value pointed to by body is JSON encoded and included
 // as the request body.
 func NewRequest(method, path string, token string, opt any) (result []byte, err error) {
-	// var result []byte
 
 	reqHeaders := make(http.Header)
 	reqHeaders.Set("Accept", "application/json")
-
-	var body []byte
-	// var err error
+	var resp *http.Request
 	var postBodyJsonBuffer *bytes.Buffer
+	var err1 error
+
+	reqHeaders.Set("Content-Type", "application/json")
+
+	reqHeaders.Set("Authorization", "Bearer "+token)
+
 	switch {
 	case method == http.MethodPatch || method == http.MethodPost || method == http.MethodPut:
-		reqHeaders.Set("Content-Type", "application/json")
-
-		reqHeaders.Set("Authorization", "Bearer "+token)
 
 		if opt != nil {
-			body, err = json.Marshal(opt)
-			if err != nil {
-				return nil, err
+			var body []byte
+
+			body, err1 = json.Marshal(opt)
+			fmt.Println(" json.Marshal", body)
+			if err1 != nil {
+				return nil, err1
 			} else {
+				fmt.Println(" postBodyJsonBuffer ", body)
 				postBodyJsonBuffer = bytes.NewBuffer(body)
 			}
-		}
+			resp, err = http.NewRequest(method, path, postBodyJsonBuffer)
+			if err != nil {
+				fmt.Println("NewRequest res", resp)
+				return result, err
+			}
+			fmt.Println("req", resp)
 
+		}
+	default:
+		fmt.Println("fetch with get mothod ", resp)
+		resp, err1 = http.NewRequest(method, path, nil)
+		if err1 != nil {
+			fmt.Println("get err block  ", resp)
+			return result, err1
+		}
 	}
 
+<<<<<<< HEAD
 	resp, err := http.NewRequest(method, path, postBodyJsonBuffer)
 	if err != nil {
 		return result, err
@@ -70,15 +88,26 @@ func NewRequest(method, path string, token string, opt any) (result []byte, err 
 	maps.Copy(resp.Header, reqHeaders)
 
 	response, err_do := http.DefaultClient.Do(resp)
+=======
+	// Set the request specific headers.
+	maps.Copy(resp.Header, reqHeaders)
+
+	response, err2 := http.DefaultClient.Do(resp)
+	if err != nil {
+		return result, err2
+	}
+
+	fmt.Println("response", response)
+>>>>>>> dev
 
 	defer response.Body.Close()
 
-	err_do = CheckResponse(response)
+	err = CheckResponse(response)
 
-	if err_do != nil {
+	if err != nil {
 		// Even though there was an error, we still return the response
 		// in case the caller wants to inspect it further.
-		return result, err_do
+		return result, err
 	}
 
 	result, _ = io.ReadAll(response.Body)

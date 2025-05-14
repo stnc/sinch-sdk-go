@@ -1,5 +1,6 @@
 package groups
 
+<<<<<<< HEAD
 import (
 	"github.com/stnc/sinch-sdk-go/sdk/model"
 )
@@ -16,3 +17,11 @@ func (s *GroupsRepo) Create() string {
 type GroupsRepo struct {
 	C *model.Client
 }
+=======
+
+
+func (s *Groups) Create() string {
+	return " Create data " + s.C.ClientId
+}
+
+>>>>>>> dev

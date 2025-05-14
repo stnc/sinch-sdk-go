@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stnc/sinch-sdk-go/sdk"
+	"github.com/stnc/sinch-sdk-go/sdk/model"
 	batchesModel "github.com/stnc/sinch-sdk-go/sdk/model/sms/batches"
-	sdk "github.com/stnc/sinch-sdk-go/sdk/sms"
 
 	"github.com/joho/godotenv"
 )
@@ -18,13 +19,30 @@ func init() {
 }
 
 func main() {
+	// var byteSlice []byte
+	// byteSlice = nil
+	// fmt.Println(byteSlice)
+	// if byteSlice == nil {
+	// 	fmt.Println("nillll", byteSlice)
 
+	// }
+	// converted := string(byteSlice)
+	// fmt.Println(converted)
+
+	// direct := string([]byte("Another Example"))
+	// fmt.Println(direct)
+	send()
+	list()
+
+
+}
+func send() {
 	data := &batchesModel.SendBatchRequest{
-		Body: "Hello from Sinch! via golang sdk ",
-		From: os.Getenv("FROM"),
-		// SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
-		SmsType: "mt_eetext",
-		To:      []string{os.Getenv("TO")},
+		Body:    "Hello from Sinch! via golang sdk ",
+		From:    os.Getenv("FROM"),
+		SmsType: model.SendTextBatchResponseTypeText, //or "mt_text",
+		// SmsType: "mt_eetext",
+		To: []string{os.Getenv("TO")},
 	}
 
 	sms, err := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
@@ -43,19 +61,20 @@ func main() {
 		fmt.Println(response)
 	}
 
-	// response, err_send := sms.Batches.List()
+}
+func list() {
+	sms, err := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
 
-	// if err_send != nil {
-	// 	fmt.Println(err_send)
-	// } else {
-	// 	fmt.Println(response)
-	// }
+	if err != nil {
+		panic(err)
+	}
 
-	// a := sms.Batches.DryRun()
+	response, err_send := sms.Batches.List()
 
-	// fmt.Println(a)
-
-	// b := sms.Groups.Create()
-	// fmt.Println(b)
+	if err_send != nil {
+		fmt.Println(err_send)
+	} else {
+		fmt.Println(response)
+	}
 
 }
