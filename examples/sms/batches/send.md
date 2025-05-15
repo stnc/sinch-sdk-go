@@ -155,3 +155,68 @@ func main() {
 
 ```
 
+### Example with api [Golang Native advance]
+
+
+```golang
+package main
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+)
+
+type PostBody struct {
+	From string   `json:"from"`
+	Body string   `json:"body"`
+	To   []string `json:"to"`
+}
+
+func main() {
+
+	servicePlanId := "your service plan id"
+	url := "https://us.sms.api.sinch.com/xms/v1/" + servicePlanId + "/batches"
+	apiToken := "your api token "
+
+	data := &PostBody{
+		Body: "Hello from Sinch! via API ",
+		From: "YOUR_Sinch_virtual_number",
+		To:   []string{"YOUR_recipient_number"}}
+
+	postBody, err := json.Marshal(data)
+
+	fmt.Println(string(postBody))
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	responseBody := bytes.NewBuffer(postBody)
+	//Leverage Go's HTTP Post function to make request
+	resp, err := http.NewRequest(http.MethodPost, url, responseBody)
+	resp.Header.Add("Content-Type", "application/json")
+	resp.Header.Add("Authorization", "Bearer "+apiToken)
+
+	response, err := http.DefaultClient.Do(resp)
+
+	//Handle Error
+	if err != nil {
+		log.Fatalf("An Error Occured %v", err)
+	}
+	defer response.Body.Close()
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	sb := string(body)
+	log.Printf(sb)
+
+}
+
+
+```
