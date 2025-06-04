@@ -19,18 +19,6 @@ func init() {
 }
 
 func main() {
-	// var byteSlice []byte
-	// byteSlice = nil
-	// fmt.Println(byteSlice)
-	// if byteSlice == nil {
-	// 	fmt.Println("nillll", byteSlice)
-
-	// }
-	// converted := string(byteSlice)
-	// fmt.Println(converted)
-
-	// direct := string([]byte("Another Example"))
-	// fmt.Println(direct)
 	send()
 	list()
 
