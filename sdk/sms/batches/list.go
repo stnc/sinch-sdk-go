@@ -14,17 +14,7 @@ import (
 
 // List Batches  : With the list operation you can list batch messages created in the last 14 days that you have created. This operation supports pagination
 func (s *Batches) List() (batchesModel.ListBatchResponse, error) {
-<<<<<<< HEAD
 
-
-	var result1 batchesModel.ListBatchResponse
-
-	token1 := core.GetToken(s.C)
-
-	url1 := core.ReplaceUrl(model.APIUrl+"/batches", s.C.ProjectId, s.C.Region)
-
-	response1, err1 := core.NewRequest(http.MethodGet, url1, token1.AccessToken, nil)
-=======
 
 	var result batchesModel.ListBatchResponse
 
