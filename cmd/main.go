@@ -19,21 +19,9 @@ func init() {
 }
 
 func main() {
-	// var byteSlice []byte
-	// byteSlice = nil
-	// fmt.Println(byteSlice)
-	// if byteSlice == nil {
-	// 	fmt.Println("nillll", byteSlice)
-
-	// }
-	// converted := string(byteSlice)
-	// fmt.Println(converted)
-
-	// direct := string([]byte("Another Example"))
-	// fmt.Println(direct)
-	send()
-	list()
-
+	// send()
+	// list()
+	dryrun()
 
 }
 func send() {
@@ -70,6 +58,31 @@ func list() {
 	}
 
 	response, err_send := sms.Batches.List()
+
+	if err_send != nil {
+		fmt.Println(err_send)
+	} else {
+		fmt.Println(response)
+	}
+
+}
+
+func dryrun() {
+	sms, err := sdk.Clients(os.Getenv("PROJECT_ID"), os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("REGION"))
+
+	if err != nil {
+		panic(err)
+	}
+
+	data := &batchesModel.SendDryRunRequest{
+		Body:         "Hello from Sinch! via golang sdk ",
+		From:         os.Getenv("FROM"),
+		SmsType:      model.SendTextBatchResponseTypeText, //or "mt_text",
+		To:           []string{os.Getenv("TO")},
+		// PerRecipient: true,
+	}
+
+	response, err_send := sms.Batches.DryRun(data)
 
 	if err_send != nil {
 		fmt.Println(err_send)

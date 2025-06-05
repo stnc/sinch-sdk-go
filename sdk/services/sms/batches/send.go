@@ -14,9 +14,6 @@ type BatchesInterface interface {
 	// List Batches  : With the list operation you can list batch messages created in the last 14 days that you have created. This operation supports pagination
 	List() (batchesModel.ListBatchResponse, error)
 
-	DryRun() string
+	DryRun(*batchesModel.SendDryRunRequest) (batchesModel.SendDryRunResponse, error)
 }
 
-type GroupsInterface interface {
-	Create() string
-}
