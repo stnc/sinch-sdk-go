@@ -23,7 +23,6 @@ func (s *Batches) List() (batchesModel.ListBatchResponse, error) {
 	url := core.ReplaceUrl(model.APIUrl+"/batches", s.C.ProjectId, s.C.Region)
 
 	response, err1 := core.NewRequest(http.MethodGet, url, token.AccessToken, nil)
->>>>>>> dev
 
 	if err1 != nil {
 		return result, err1
